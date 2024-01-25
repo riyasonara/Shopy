@@ -1,24 +1,26 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProductsList from "./Products/ProductsList";
-import Brands from "./components/Brands/Brands";
-import FeaturedProducts from "./components/FeaturedProducts/FeaturedProducts";
+import ProductsList from "./components/Products/ProductsList";
 import Home from "./components/Home/Home";
 import ResponsiveAppBar from "./components/Navbar/Navbar";
-import OfferPage from "./OffersSection/OfferPage";
+import Footer from "./components/Footer/Footer";
+
+import SingleProduct from "./components/SingleProduct/SingleProduct";
+// import MediaCard from "./components/ProductUI/ProductsUI";
 
 const App = () => {
   return (
     <>
-      <ResponsiveAppBar />
       <BrowserRouter>
+        <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ProductsList" element={<ProductsList />} />
+
+          {/* <Route path="/ProductsList" element={<ProductsList />} /> */}
+          <Route exact path="/everything/:id" element={<SingleProduct />} />
+          <Route path="/everything" element={<ProductsList />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Brands />
-      <FeaturedProducts />
-      <OfferPage/>
     </>
   );
 };

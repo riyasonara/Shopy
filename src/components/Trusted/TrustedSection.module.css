@@ -1,0 +1,39 @@
+.trustedsection {
+  display: flex;
+  height: 200px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.globe,
+.clothes,
+.offer,
+.securePay {
+  text-align: center;
+  color: #3d3b40;
+}
+
+.icons {
+  font-size: 3rem;
+  margin: 8px 0;
+}
+.heading {
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 680px) {
+  .trustedsection {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .trustedsection > * {
+    margin-bottom: 20px;
+  }
+
+  .icons {
+    font-size: 2rem;
+  }
+}

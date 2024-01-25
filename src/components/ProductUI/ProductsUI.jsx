@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 const MediaCard = ({ products }) => {
   return (
@@ -12,13 +13,13 @@ const MediaCard = ({ products }) => {
       <CardMedia
         sx={{ height: 240, objectFit: 'contain' }}
         component="img"
-        alt={products.title}
+        alt={products.title ? products.title : "Lorem Ipsum"}
         image={products.images[0]}
-        title={products.title}
+        title={products.title ? products.title : "Lorem Ipsum"} 
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {products.title}
+          {products.title ? products.title : "Lorem Ipsum"}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {products.description}
@@ -28,9 +29,11 @@ const MediaCard = ({ products }) => {
         <Button size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <Link to={`/everything/${products.id}`}>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

@@ -5,7 +5,7 @@
 }
 
 .parallaximage {
-  background-image: url("../assets/images5.jpg");
+  background-image: url("../../assets/images5.jpg");
   min-height: 500px;
   background-attachment: fixed;
   background-position: center;
@@ -34,21 +34,29 @@
 }
 
 .heading {
-  margin-top: -465px;
   font-size: 4rem;
+  margin: 10px 0;
+}
+.text{
+  margin-top: 25px;
 }
 
 .paragraph {
+  margin-top: -465px;
   font-size: 1.5rem;
+}
+.description{
+  font-size: 1.2rem;
+  margin: 14px 0;
 }
 
 @media only screen and (max-width: 600px) {
   .heading {
     margin-top: 30px;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-  .paragraph {
-    font-size: 1.2rem;
+  .paragraph , .description , .text{
+    font-size: 1rem;
   }
 }
 
@@ -58,6 +66,9 @@
     font-size: 1.7rem;
   }
   .paragraph {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
+  }
+  .description{
+    font-size: 1rem;
   }
 }

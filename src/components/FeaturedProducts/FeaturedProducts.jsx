@@ -1,10 +1,9 @@
-import MediaCard from "../../ProductUI/ProductsUI";
+import MediaCard from "../ProductUI/ProductsUI";
 import { useGetAllProductsQuery } from "../../api/ProductsApi";
 
 const FeaturedProducts = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetAllProductsQuery();
-  console.log(data);
 
   let content;
   if (isLoading) {
