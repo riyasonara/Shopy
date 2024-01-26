@@ -37,7 +37,7 @@ const TrustedSection = () => {
           </p>
         </div>
       </div>
-      <hr />
+      <hr className={styles.hr}/>
     </>
   );
 };

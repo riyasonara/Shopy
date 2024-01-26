@@ -36,18 +36,18 @@
 .heading {
   margin-top: -465px;
   font-size: 4rem;
+  color: white;
 }
 
 .paragraph {
   font-size: 1.5rem;
+  color: white;
 }
 
 @media only screen and (max-width: 680px) {
   .heading {
-    /* margin-top: 30px; */
     font-size: 2rem;
     margin-bottom: 20px;
-    margin-top: 7px;
   }
   .paragraph {
     font-size: 1.2rem;
@@ -56,7 +56,6 @@
 
 @media only screen and (max-width: 280px) {
   .heading {
-    /* margin-top: 30px; */
     font-size: 1.7rem;
   }
   .paragraph {
