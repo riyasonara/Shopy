@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import styles from "./OfferPage.module.css";
+import { Link } from "react-router-dom";
 
 const OfferPage = () => {
   return (
@@ -13,10 +14,14 @@ const OfferPage = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
           tellus, luctus nec <br /> ullamcorper mattis, pulvinar dapibus leo.
         </p>
-        <h2 className={styles.text}>Buy This T-shirt At 20% Discount, Use Code OFF20</h2>
+        <h2 className={styles.text}>
+          Buy This T-shirt At 20% Discount, Use Code OFF20
+        </h2>
         <div style={{ marginTop: "40px" }}>
           <Button
             variant="contained"
+            component={Link}
+            to="/everything"
             sx={{
               fontSize: { xs: "0.7rem", sm: "0.8rem", md: "1rem" },
             }}

@@ -14,8 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/shopy-high-resolution-logo-white-transparent.png";
 import { Link } from "react-router-dom";
 
-
-const pages = ["Everything", "Women", "Men","Accessories"];
+const pages = ["Everything", "Women", "Men", "Accessories"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -38,14 +37,14 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ background: 'rgba(51, 51, 51, 0.9)' }}>
+    <AppBar position="static" sx={{ background: "rgba(51, 51, 51, 0.9)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -90,7 +89,9 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" style={{color:"black"}}>{page}</Typography>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,8 +99,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -126,8 +127,9 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
+          <Link to="/contact">Contact</Link> &nbsp;&nbsp;&nbsp;
           <Box sx={{ flexGrow: 0 }}>
+
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -151,7 +153,9 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" style={{color:"black"}}>{setting}</Typography>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

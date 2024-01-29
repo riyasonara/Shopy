@@ -1,11 +1,8 @@
 import Button from "@mui/material/Button";
-import styles from "./Home.module.css";
-import Brands from "../Brands/Brands";
-import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
-import OfferPage from "../OffersSection/OfferPage";
-import TrustedSection from "../Trusted/TrustedSection";
 import { Link } from "react-router-dom";
-const Home = () => {
+import styles from "./Contact.module.css";
+
+const Contact = () => {
   return (
     <>
       <div className={styles.parallaxcontainer}>
@@ -42,12 +39,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Brands />
-      <FeaturedProducts />
-      <OfferPage />
-      <TrustedSection />
     </>
   );
 };
 
-export default Home;
+export default Contact;

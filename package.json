@@ -22,7 +22,9 @@
     "react-router-dom": "^6.21.3",
     "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.10.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

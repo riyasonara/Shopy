@@ -1,0 +1,65 @@
+.parallaxcontainer {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .parallaximage {
+    background-image: url("../../assets/istockphoto.jpg");
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    text-align: left;
+    color: white;
+  }
+  
+  .heading {
+    margin-top: -465px;
+    font-size: 4rem;
+    color: white;
+  }
+  
+  .paragraph {
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  @media only screen and (max-width: 680px) {
+    .heading {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .paragraph {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media only screen and (max-width: 280px) {
+    .heading {
+      font-size: 1.7rem;
+    }
+    .paragraph {
+      font-size: 0.9rem;
+    }
+  }
+  

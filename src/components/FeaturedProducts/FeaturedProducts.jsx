@@ -9,10 +9,7 @@ const FeaturedProducts = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   } else if (isSuccess) {
-    // Check if data and data.products are not undefined
-    const filteredProducts = (data?.products || []).filter(
-      (product) => product.id < 4
-    );
+    const filteredProducts = (data || []).slice(0, 3);
 
     content = (
       <>

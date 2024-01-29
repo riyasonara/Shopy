@@ -5,7 +5,8 @@ import ResponsiveAppBar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
 import SingleProduct from "./components/SingleProduct/SingleProduct";
-// import MediaCard from "./components/ProductUI/ProductsUI";
+import Cart from "./components/Cart/Cart";
+import Contact from "./components/ContactUs/Contact";
 
 const App = () => {
   return (
@@ -14,8 +15,8 @@ const App = () => {
         <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Home />} />
-
-          {/* <Route path="/ProductsList" element={<ProductsList />} /> */}
+          <Route path="/cart" exact element={<Cart />} />
+          <Route path="/contact" exact element={<Contact />} />
           <Route exact path="/everything/:id" element={<SingleProduct />} />
           <Route path="/everything" element={<ProductsList />} />
         </Routes>
