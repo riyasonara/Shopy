@@ -15,7 +15,7 @@ import logo from "../../assets/shopy-high-resolution-logo-white-transparent.png"
 import { Link } from "react-router-dom";
 
 const pages = ["Everything", "Women", "Men", "Accessories"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "WishList", "Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,7 +57,6 @@ function ResponsiveAppBar() {
           >
             <img src={logo} style={{ height: "40px", width: "40px" }} />
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -89,7 +88,12 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" style={{ color: "black" }}>
+                  <Typography
+                    textAlign="center"
+                    style={{ color: "black" }}
+                    component={Link}
+                    to={`/${page.toLowerCase()}`}
+                  >
                     {page}
                   </Typography>
                 </MenuItem>
@@ -121,15 +125,25 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to={`/${page.toLowerCase()}`}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  textDecoration: "none",
+                }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Link to="/contact">Contact</Link> &nbsp;&nbsp;&nbsp;
+          <Link
+            style={{ color: "white", textDecoration: "none" }}
+            to="/contact"
+          >
+            Contact
+          </Link>
+          &nbsp;&nbsp;&nbsp;
           <Box sx={{ flexGrow: 0 }}>
-
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -153,7 +167,12 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" style={{ color: "black" }}>
+                  <Typography
+                    textAlign="center"
+                    style={{ color: "black", textDecoration: "none" }}
+                    component={Link}
+                    to={`/${setting.toLowerCase()}`}
+                  >
                     {setting}
                   </Typography>
                 </MenuItem>

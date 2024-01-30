@@ -1,27 +1,30 @@
-.main {
-  height: 80px;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: space-between;
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px 0;
+  text-align: center;
+  height:"80px"
 }
-.logo {
+
+.content {
   display: flex;
-  gap: 15px;
-  margin: 20px 5px;
+  justify-content: space-around;
 }
-.logo :hover {
+
+.logos {
+  display: flex;
+  justify-content: center;
+}
+
+.logo:hover{
   cursor: pointer;
   color: #1976d2;
 }
-.content {
-  margin: 20px 5px;
-  color: #3d3b40;
-}
-@media screen and (max-width: 680px) {
-  .content {
-    font-size: 12px;
-  }
-  .logo {
-    font-size: 1rem;
-  }
+
+.logos > * {
+  margin-right: 10px;
 }

@@ -10,6 +10,7 @@
   width: 60%;
   align-items: center;
   margin-top: 20px;
+  border: 0;
 }
 
 .image {
@@ -81,4 +82,28 @@ hr {
   border: 0.5px solid #ddd;
   margin-top: 15px;
   margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .imagediv {
+    width: 60%;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .rightcontainer {
+    width: 40%;
+  }
+
+  .buttonsContainer {
+    flex-direction: row;
+  }
+
+  .buttonsContainer > * {
+    flex: 1;
+  }
 }

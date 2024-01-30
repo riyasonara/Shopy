@@ -6,8 +6,26 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { RiHeart3Fill } from "react-icons/ri";
+import { useState, useCallback } from "react";
+import Swal from "sweetalert2";
 
 const MediaCard = ({ products }) => {
+  const [toggleHeart, setToggleHeart] = useState(false);
+
+  const changeColor = useCallback(() => {
+    setToggleHeart(!toggleHeart);
+    if (toggleHeart === false) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Item is wishlishted",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  }, [toggleHeart]);
+
   return (
     <Card
       sx={{
@@ -17,7 +35,7 @@ const MediaCard = ({ products }) => {
       }}
     >
       <CardMedia
-        sx={{ height: 240, objectFit: "contain" }}
+        sx={{ height: 240, objectFit: "contain", marginTop: "15px" }}
         component="img"
         alt={products.title}
         image={products.images[0]}
@@ -43,6 +61,10 @@ const MediaCard = ({ products }) => {
             Learn More
           </Button>
         </Link>
+        <RiHeart3Fill
+          style={{ color: toggleHeart ? "red" : "inherit", cursor: "pointer" }}
+          onClick={changeColor}
+        />
       </CardActions>
     </Card>
   );

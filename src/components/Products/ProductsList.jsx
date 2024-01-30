@@ -43,7 +43,11 @@ const ProductsList = () => {
   } else if (isError) {
     content = <p style={{ color: "black" }}>Error: {error.message}</p>;
   }
-  return <div className="pt-3">{content}</div>;
+  return (
+    <div className="pt-3" style={{ backgroundColor: "#f5f7f9" }}>
+      {content}
+    </div>
+  );
 };
 
 export default ProductsList;

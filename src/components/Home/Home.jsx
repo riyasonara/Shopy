@@ -3,8 +3,9 @@ import styles from "./Home.module.css";
 import Brands from "../Brands/Brands";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import OfferPage from "../OffersSection/OfferPage";
-import TrustedSection from "../Trusted/TrustedSection";
 import { Link } from "react-router-dom";
+import TrustedSection from "../Trusted/TrustedSection";
+
 const Home = () => {
   return (
     <>
@@ -25,16 +26,18 @@ const Home = () => {
               sx={{
                 fontSize: { xs: "0.7rem", sm: "0.8rem", md: "1rem" },
                 marginTop: "30px",
+                marginBottom: "10px",
+                marginRight: "10px",
               }}
             >
               Shop Now
             </Button>
-            &nbsp;&nbsp;
             <Button
               variant="contained"
               sx={{
                 fontSize: { xs: "0.7rem", sm: "0.8rem", md: "1rem" },
                 marginTop: "30px",
+                marginBottom: "10px",
               }}
             >
               Find More

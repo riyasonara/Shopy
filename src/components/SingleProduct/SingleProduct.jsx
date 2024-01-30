@@ -1,5 +1,3 @@
-import { Link, useParams } from "react-router-dom";
-import { useGetAllProductsQuery } from "../../api/ProductsApi";
 import styles from "./SingleProduct.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,11 +7,14 @@ import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/cartSlice";
 import { LuShoppingCart } from "react-icons/lu";
+import { useParams, Link } from "react-router-dom";
+import { useGetSingleProductQuery } from "../../api/ProductsApi";
+import YouTube from "../Loader/Skeleton";
 
 const SingleProduct = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { id } = useParams();
-  const { data, isLoading, isError, error } = useGetAllProductsQuery();
+  const { data, isLoading, isError, error } = useGetSingleProductQuery(id);
   const dispatch = useDispatch();
 
   const settings = {
@@ -24,10 +25,8 @@ const SingleProduct = () => {
     slidesToScroll: 1,
   };
 
-  const product = data?.find((product) => String(product.id) === String(id));
-
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <YouTube/>;
   }
 
   if (isError) {
@@ -35,8 +34,8 @@ const SingleProduct = () => {
   }
 
   let imagesContent = null;
-  if (product) {
-    imagesContent = product.images.map((imageUrl, index) => (
+  if (data) {
+    imagesContent = data.images.map((imageUrl, index) => (
       <div key={index}>
         <img
           className={styles.image}
@@ -56,27 +55,25 @@ const SingleProduct = () => {
 
         <div className={styles.rightcontainer}>
           {/* Display product details on the right side */}
-          {product && (
+          {data && (
             <div>
-              <h2>{product.title}</h2>
-              <p>{product.description}</p>
-              <p className={styles.price}>Price: ${product.price}</p>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h2>{data.title}</h2>
+              <p>{data.description}</p>
+              <p className={styles.price}>Price: ${data.price}</p>
+              <div className={styles.buttonsContainer}>
                 <Button
                   onClick={() => {
                     let item = null;
-                    item = { ...product, quantity: 1 };
+                    item = { ...data, quantity: 1 };
                     dispatch(addToCart(item));
                   }}
                   variant="contained"
+                  startIcon={<LuShoppingCart />}
                 >
-                  <LuShoppingCart />
-                  Add to cart
+                  Add to Cart
                 </Button>
-                <Button>
-                  <Link to="/cart">
-                    Items in Cart : &nbsp;({cartItems.length})
-                  </Link>
+                <Button component={Link} to="/cart" variant="outlined">
+                  Items in Cart: ({cartItems.length})
                 </Button>
               </div>
               <hr />

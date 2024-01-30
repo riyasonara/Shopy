@@ -11,7 +11,10 @@ export const productsAPI = createApi({
     getAllProducts: builder.query({
       query: () => createRequest(`products?offset=10&limit=38`),
     }),
+    getSingleProduct: builder.query({
+      query :(id)=> createRequest(`products/${id}`)
+    })
   }),
 });
 
-export const { useGetAllProductsQuery } = productsAPI;
+export const { useGetAllProductsQuery , useGetSingleProductQuery } = productsAPI;

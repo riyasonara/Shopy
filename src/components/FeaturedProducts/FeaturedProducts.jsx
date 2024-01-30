@@ -20,7 +20,8 @@ const FeaturedProducts = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            marginTop:"25px"
+            marginTop:"25px",
+            marginBottom:"20px"
           }}
         >
           {filteredProducts.map((product) => (
