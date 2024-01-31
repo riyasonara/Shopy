@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../Redux/cartSlice";
+import { addToCart } from "../../Redux/slices/cartSlice";
 import { LuShoppingCart } from "react-icons/lu";
 import { useParams, Link } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../api/ProductsApi";

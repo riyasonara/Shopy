@@ -6,9 +6,9 @@ import Footer from "./components/Footer/Footer";
 import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/ContactUs/Contact";
-import WishList from "./components/Wishlist/WishlistedItems/WishList";
 import SignUp from "./components/Auth/SignUp/SignUp";
 import Login from "./components/Auth/Login/Login";
+import WishList from "./components/Wishlist/WishlistedItems/WishList";
 
 const App = () => {
   return (
@@ -17,15 +17,15 @@ const App = () => {
          <ResponsiveAppBar />
       {/* <SignUp/> */}
       <Login/>
-        <Routes>
-          {/* <Route path="/" element={<Home />} />
+        {/* <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/contact" exact element={<Contact />} />
           <Route exact path="/everything/:id" element={<SingleProduct />} />
           <Route path="/everything" element={<ProductsList />} />
           <Route path="/wishlist" element={<WishList />} /> */}
-          <Route path="/signup" element={<SignUp/>}/>
-        </Routes>
+          {/* <Route path="/signup" element={<SignUp/>}/> */}
+        {/* </Routes> */}
       </BrowserRouter>
       <Footer /> 
     </>

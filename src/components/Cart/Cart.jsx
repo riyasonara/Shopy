@@ -1,82 +1,135 @@
+import {
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { Add, ArrowBackIos, Remove } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQ, incrementQ, removeFromCart } from "../../Redux/cartSlice";
-import styles from "./Cart.module.css"; // Import CSS module
+import { Link } from "react-router-dom";
+import {
+  clearAllCart,
+  decreaseCartQuantity,
+  getTotal,
+  increaseCartQuantity,
+} from "../../Redux/slices/cartSlice";
+import { styled } from "@mui/system";
+import { useEffect } from "react";
 
-export default function Cart() {
-  const { cartItems } = useSelector((state) => state.cart);
+const StyledTableCell = styled(TableCell)(() => ({
+  padding: "8px",
+  borderBottom: "1px solid #e0e0e0", 
+}));
+
+const CartProduct = () => {
+  const cart = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+
+  const SHIPPING_FEES = 7.99;
   const dispatch = useDispatch();
 
+  function handleBack() {
+    window.history.back();
+  }
+
+  function handleRemoveItem(cartItem) {
+    dispatch(decreaseCartQuantity(cartItem));
+  }
+
+  function handleAddItem(cartItem) {
+    dispatch(increaseCartQuantity(cartItem));
+  }
+
+  function clearCart() {
+    dispatch(clearAllCart());
+  }
+
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
+
+  console.log(cartItems);
+
   return (
-    <div className="row my-4">
-      <div className="col-md-12">
-        <div className="card">
-          <div className="card-body">
-            <table className={`${styles.table} table`}>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Subtotal</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      <img
-                        src={item.images[0]}
-                        alt={item.title}
-                        className={`fluid rounded ${styles.image}`}
-                      />
-                    </td>
-                    <td>{item.title}</td>
-                    <td>
-                      <i
-                        onClick={() => dispatch(incrementQ(item))}
-                        className={`bi bi-caret-up ${styles.icon}`}
-                      ></i>
-                      <span className="mx-2">{item.quantity}</span>
-                      <i
-                        onClick={() => dispatch(decrementQ(item))}
-                        className={`bi bi-caret-down ${styles.icon}`}
-                      ></i>
-                    </td>
-                    <td>${item.price}</td>
-                    <td>${item.price * item.quantity}</td>
-                    <td>
-                      <i
-                        onClick={() => dispatch(removeFromCart(item))}
-                        className={`bi bi-cart-x text-danger ${styles.icon}`}
-                      ></i>
-                    </td>
-                  </tr>
-                ))}
-                <tr>
-                  <th colSpan={3} className="text-center">
-                    Total
-                  </th>
-                  <td colSpan={3} className="text-center">
-                    <span
-                      className={`badge bg-danger rounded-pill ${styles.total}`}
+    <>
+      {cartItems.length >= 1 && (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Product</StyledTableCell>
+                <StyledTableCell align="center">Quantity</StyledTableCell>
+                <StyledTableCell align="center">Price</StyledTableCell>
+                <StyledTableCell align="center">Total</StyledTableCell>
+                <StyledTableCell align="center">Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {cartItems.map((cartItem) => (
+                <TableRow key={cartItem.id}>
+                  <StyledTableCell>
+                    <img src={cartItem.images[0]} style={{width:"50px", height:"50px"}}/> {cartItem.title}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <IconButton
+                      size="small"
+                      onClick={() => {
+                        handleRemoveItem(cartItem);
+                      }}
                     >
-                      $
-                      {cartItems.reduce(
-                        (acc, item) => (acc += item.price * item.quantity),
-                        0
-                      )}
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+                      <Remove />
+                    </IconButton>
+                    <TextField
+                      type="number"
+                      value={cartItem.quantity}
+                      variant="outlined"
+                      size="small"
+                      inputProps={{ min: 1 }}
+                    />
+                    <IconButton
+                      size="small"
+                      onClick={() => {
+                        handleAddItem(cartItem);
+                      }}
+                    >
+                      <Add />
+                    </IconButton>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {cartItem.price}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {cartItem.price * cartItem.quantity}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <IconButton
+                      size="small"
+                      onClick={() => {
+                        handleRemoveItem(cartItem);
+                      }}
+                    >
+                      Remove
+                    </IconButton>
+                  </StyledTableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
   );
-}
+};
+
+export default CartProduct;

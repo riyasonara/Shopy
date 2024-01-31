@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import styles from "./Login.module.css";
-import backgroundImage from "../../../assets/shopping2.jpg"
+import backgroundImage from "../../../assets/ShoppingCard.jpg"
 
 const Login = () => {
   const [formData, setFormData] = useState({
