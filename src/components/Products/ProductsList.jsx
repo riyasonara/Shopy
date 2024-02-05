@@ -7,6 +7,7 @@ import MediaCard from "../ProductUI/ProductsUI";
 const ProductsList = () => {
   const { data, isLoading, isSuccess, isError, error } =
     useGetAllProductsQuery();
+
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
 
@@ -17,7 +18,7 @@ const ProductsList = () => {
     // Pagination
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = data.slice(indexOfFirstProduct, indexOfLastProduct);
+    const currentProducts = data.products.slice(indexOfFirstProduct, indexOfLastProduct);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -36,7 +37,7 @@ const ProductsList = () => {
         </div>
         <PaginationRounded
           onPageChange={paginate}
-          pageCount={Math.ceil(data.length / productsPerPage)}
+          pageCount={Math.ceil(data.products.length / productsPerPage)}
         />
       </>
     );

@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   } else if (isSuccess) {
-    const filteredProducts = (data || []).slice(0, 3);
+    const filteredProducts = (data.products || []).slice(0, 3);
 
     content = (
       <>

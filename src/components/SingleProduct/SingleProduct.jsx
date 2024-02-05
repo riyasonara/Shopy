@@ -26,7 +26,7 @@ const SingleProduct = () => {
   };
 
   if (isLoading) {
-    return <YouTube/>;
+    return <YouTube />;
   }
 
   if (isError) {

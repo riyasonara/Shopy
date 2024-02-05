@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const createRequest = (url) => ({ url });
-const baseUrl = "https://api.escuelajs.co/api/v1/";
+const baseUrl = "https://dummyjson.com/";
 
 export const productsAPI = createApi({
   reducerPath: "apiProducts",
@@ -9,7 +9,7 @@ export const productsAPI = createApi({
   tagTypes: ["Products"],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: () => createRequest(`products?offset=10&limit=38`),
+      query: () => createRequest(`products`),
     }),
     getSingleProduct: builder.query({
       query :(id)=> createRequest(`products/${id}`)

@@ -13,21 +13,21 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Add, ArrowBackIos, Remove } from "@mui/icons-material";
+import { Add, Remove } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   clearAllCart,
-  decreaseCartQuantity,
+  decrementQuantity,
   getTotal,
-  increaseCartQuantity,
+  incrementQuantity,
 } from "../../Redux/slices/cartSlice";
 import { styled } from "@mui/system";
 import { useEffect } from "react";
 
 const StyledTableCell = styled(TableCell)(() => ({
   padding: "8px",
-  borderBottom: "1px solid #e0e0e0", 
+  borderBottom: "1px solid #e0e0e0",
 }));
 
 const CartProduct = () => {
@@ -43,13 +43,36 @@ const CartProduct = () => {
     window.history.back();
   }
 
-  function handleRemoveItem(cartItem) {
-    dispatch(decreaseCartQuantity(cartItem));
-  }
+  // function handleRemoveItem(cartItem) {
+  //   dispatch(decrementQuantity(cartItem));
+  // }
 
   function handleAddItem(cartItem) {
-    dispatch(increaseCartQuantity(cartItem));
+    if (cartItem.cartQuantity < cartItem.stock) {
+      dispatch(incrementQuantity(cartItem.id));
+    } else {
+      // Notify the user that the maximum stock limit has been reached
+      // You can show a toast message or display an alert here
+      console.log("Maximum stock limit reached");
+    }
   }
+  
+  function handleRemoveItem(cartItem) {
+    if (cartItem.cartQuantity > 1) {
+      dispatch(decrementQuantity(cartItem.id));
+    }
+  }
+  function handleQuantityChange(value, cartItem) {
+  const newQuantity = parseInt(value);
+  if (!isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= cartItem.stock) {
+    if (newQuantity > cartItem.cartQuantity) {
+      dispatch(incrementQuantity(cartItem.id));
+    } else if (newQuantity < cartItem.cartQuantity) {
+      dispatch(decrementQuantity(cartItem.id));
+    }
+  }
+}
+
 
   function clearCart() {
     dispatch(clearAllCart());
@@ -58,8 +81,6 @@ const CartProduct = () => {
   useEffect(() => {
     dispatch(getTotal());
   }, [cart, dispatch]);
-
-  console.log(cartItems);
 
   return (
     <>
@@ -79,7 +100,11 @@ const CartProduct = () => {
               {cartItems.map((cartItem) => (
                 <TableRow key={cartItem.id}>
                   <StyledTableCell>
-                    <img src={cartItem.images[0]} style={{width:"50px", height:"50px"}}/> {cartItem.title}
+                    <img
+                      src={cartItem.images[0]}
+                      style={{ width: "50px", height: "50px" }}
+                    />
+                    {cartItem.title}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <IconButton
@@ -91,12 +116,14 @@ const CartProduct = () => {
                       <Remove />
                     </IconButton>
                     <TextField
-                      type="number"
-                      value={cartItem.quantity}
-                      variant="outlined"
-                      size="small"
-                      inputProps={{ min: 1 }}
-                    />
+  type="number"
+  value={cartItem.cartQuantity}
+  variant="outlined"
+  size="small"
+  inputProps={{ min: 1, max: cartItem.stock }} // Setting max value to available stock
+  onChange={(e) => handleQuantityChange(e.target.value, cartItem)}
+/>
+
                     <IconButton
                       size="small"
                       onClick={() => {
@@ -128,6 +155,8 @@ const CartProduct = () => {
           </Table>
         </TableContainer>
       )}
+      <Button onClick={clearCart}>Clear Cart</Button>
+      <Button onClick={handleBack}>Back to Shopping</Button>
     </>
   );
 };

@@ -1,14 +1,30 @@
-.mainContainer{
-    display: flex;
-    background-color: #f5f7f9;
-    gap: 5rem;
-    justify-content: center;
-    margin: 20px 50px 20px 50px ;
-    padding: 2px;
-    align-items: center;
-    height: 600px;
+.mainContainer {
+  display: flex;
+  background-color: #f5f7f9;
+  gap: 2rem;
+  justify-content: center;
+  margin: 20px 50px;
+  padding: 20px;
+  align-items: center;
+  height: auto;
+  flex-wrap: wrap;
 }
-.form{
-    background-color: white;
-    padding: 25px;
+
+.leftContainer,
+.rightContainer {
+  flex: 1;
+}
+
+.form {
+  background-color: white;
+  padding: 25px;
+  max-width: 400px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    gap: 1rem;
+    margin: 20px;
+  }
 }

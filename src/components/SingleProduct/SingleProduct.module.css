@@ -83,7 +83,10 @@ hr {
   margin-top: 15px;
   margin-bottom: 10px;
 }
-
+.buttonsContainer {
+  display: flex;
+  gap: 1em;
+}
 @media (min-width: 768px) {
   .container {
     flex-direction: row;

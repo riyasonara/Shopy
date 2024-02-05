@@ -14,20 +14,20 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-         <ResponsiveAppBar />
-      {/* <SignUp/> */}
-      <Login/>
-        {/* <Routes>
+        <ResponsiveAppBar />
+        {/* <SignUp/> */}
+        {/* <Login /> */}
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/contact" exact element={<Contact />} />
           <Route exact path="/everything/:id" element={<SingleProduct />} />
           <Route path="/everything" element={<ProductsList />} />
-          <Route path="/wishlist" element={<WishList />} /> */}
-          {/* <Route path="/signup" element={<SignUp/>}/> */}
-        {/* </Routes> */}
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       </BrowserRouter>
-      <Footer /> 
+      {/* <Footer /> */}
     </>
   );
 };
